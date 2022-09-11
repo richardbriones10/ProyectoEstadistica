@@ -18,7 +18,7 @@ def getSquareRoot():
 
     # for i in range(21):
     #     lista.append(i)
-    lista.append(x1)  #BUG, HAY QUE METER 20 (0-20) DATOS Y DESPUES CERRARLO
+    lista.append(x1)  #BUG, HAY QUE METER 21 (0-20) DATOS Y DESPUES CERRARLO
 
     label1 = tkinter.Label(root, text="Valor Agregado: "+x1)
     canvas1.create_window(200, 230, window=label1)
