@@ -12,12 +12,13 @@ canvas1.create_window(200, 140, window=entry1)
 
 lista = []
 
+
 def getSquareRoot():
     x1 = entry1.get()
 
     lista.append(x1)
 
-    label1 = tkinter.Label(root, text=x1)
+    label1 = tkinter.Label(root, text="Valor Agregado: "+ x1)
     canvas1.create_window(200, 230, window=label1)
 
 
@@ -35,27 +36,36 @@ class Table:
         x = int(lista[0])
 
 
+        #FRECUENCIA ACUMULADA
+        fi = []
+        fi.append(lista[0])
+        print(fi)
+        for i in range(19):
+            fi.append(int(fi[i])+int(lista[i+1]))
+        print(fi)
+
+
         lst = [("X", "fi", 'Fi', "hi", "Hi", "%", "% acumulado"),
-               (1,  lista[0] , x, 19, 1, 'Raj', 'Mumbai'),
-               (2, lista[1], 'Pune', 18, 1, 'Raj', 'Mumbai'),
-               (3, lista[0], 'Mumbai', 20, 1, 'Raj', 'Mumbai'),
-               (4, lista[0], 'Mumbai', 21, 1, 'Raj', 'Mumbai'),
-               (5, lista[0], 'Delhi', 21, 1, 'Raj', 'Mumbai'),
-               (6, lista[0], 'Mumbai', 19, 1, 'Raj', 'Mumbai'),
-               (7, lista[0], 'Pune', 18, 1, 'Raj', 'Mumbai'),
-               (8, lista[0], 'Mumbai', 20, 1, 'Raj', 'Mumbai'),
-               (9, lista[0], 'Mumbai', 21, 1, 'Raj', 'Mumbai'),
-               (10, lista[0], 'Delhi', 21, 1, 'Raj', 'Mumbai'),
-               (11, lista[0], 'Mumbai', 19, 1, 'Raj', 'Mumbai'),
-               (12, lista[0], 'Pune', 18, 1, 'Raj', 'Mumbai'),
-               (13, lista[0], 'Mumbai', 20, 1, 'Raj', 'Mumbai'),
-               (14, lista[0] , 'Mumbai', 21, 1, 'Raj', 'Mumbai'),
-               (15, lista[0], 'Delhi', 21, 1, 'Raj', 'Mumbai'),
-               (16, lista[0], 'Mumbai', 19, 1, 'Raj', 'Mumbai'),
-               (17, lista[0], 'Pune', 18, 1, 'Raj', 'Mumbai'),
-               (18, lista[0], 'Mumbai', 20, 1, 'Raj', 'Mumbai'),
-               (19, lista[0], 'Mumbai', 21, 1, 'Raj', 'Mumbai'),
-               (20, lista[0], 'Delhi', 21, 1, 'Raj', 'Mumbai')]
+               (1, lista[0], fi[0], 19, 1, 'Raj', 'Mumbai'),
+               (2, lista[1], fi[1], 18, 1, 'Raj', 'Mumbai'),
+               (3, lista[2], fi[2], 20, 1, 'Raj', 'Mumbai'),
+               (4, lista[3], fi[3], 21, 1, 'Raj', 'Mumbai'),
+               (5, lista[4], fi[4], 21, 1, 'Raj', 'Mumbai'),
+               (6, lista[5], fi[5], 19, 1, 'Raj', 'Mumbai'),
+               (7, lista[6], fi[6], 18, 1, 'Raj', 'Mumbai'),
+               (8, lista[7], fi[7], 20, 1, 'Raj', 'Mumbai'),
+               (9, lista[8], fi[8], 21, 1, 'Raj', 'Mumbai'),
+               (10, lista[9], fi[9], 21, 1, 'Raj', 'Mumbai'),
+               (11, lista[10], fi[10], 19, 1, 'Raj', 'Mumbai'),
+               (12, lista[11], fi[11], 18, 1, 'Raj', 'Mumbai'),
+               (13, lista[12], fi[12], 20, 1, 'Raj', 'Mumbai'),
+               (14, lista[13], fi[13], 21, 1, 'Raj', 'Mumbai'),
+               (15, lista[14], fi[14], 21, 1, 'Raj', 'Mumbai'),
+               (16, lista[15], fi[15], 19, 1, 'Raj', 'Mumbai'),
+               (17, lista[16], fi[16], 18, 1, 'Raj', 'Mumbai'),
+               (18, lista[17], fi[17], 20, 1, 'Raj', 'Mumbai'),
+               (19, lista[18], fi[18], 21, 1, 'Raj', 'Mumbai'),
+               (20, lista[19], fi[19], 21, 1, 'Raj', 'Mumbai')]
 
         total_rows = len(lst)
         total_columns = len(lst[0])
