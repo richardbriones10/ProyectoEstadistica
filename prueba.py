@@ -16,9 +16,11 @@ lista = []
 def getSquareRoot():
     x1 = entry1.get()
 
-    lista.append(x1)
+    # for i in range(21):
+    #     lista.append(i)
+    lista.append(x1)  #BUG, HAY QUE METER 20 (0-20) DATOS Y DESPUES CERRARLO
 
-    label1 = tkinter.Label(root, text="Valor Agregado: "+ x1)
+    label1 = tkinter.Label(root, text="Valor Agregado: "+x1)
     canvas1.create_window(200, 230, window=label1)
 
 
@@ -27,23 +29,22 @@ canvas1.create_window(200, 180, window=button1)
 
 root.mainloop()
 
+print("Frecuencia de los datos:")
 print(lista)
 
 
 class Table:
 
     def __init__(self, root):
-        x = int(lista[0])
 
 
         #FRECUENCIA ACUMULADA
         fi = []
         fi.append(lista[0])
-        print(fi)
-        for i in range(19):
+        for i in range(20):
             fi.append(int(fi[i])+int(lista[i+1]))
+        print("Frecuencia Acumulada de los datos: ")
         print(fi)
-
 
         lst = [("X", "fi", 'Fi', "hi", "Hi", "%", "% acumulado"),
                (1, lista[0], fi[0], 19, 1, 'Raj', 'Mumbai'),
