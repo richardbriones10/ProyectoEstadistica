@@ -38,6 +38,11 @@ class Table:
     def __init__(self, root):
 
 
+        sumtotal=0
+        for i in lista:
+            sumtotal=sumtotal+i
+
+
         #FRECUENCIA ACUMULADA (Fi)
         fi = []
         fi.append(lista[0])
@@ -49,19 +54,18 @@ class Table:
         #hi
 
         hi = []
-        sum = 0
+        sumfi = 0
         for i in fi:
-            sum = sum + float(i)
-        print(sum)
+            sumfi = sumfi + float(i)
 
         for i in range(20):
-            hi.append(float(fi[i])/sum)
+            hi.append(float(fi[i])/sumfi)
         print("hi de los datos:")
         print(hi)
 
-        sum2=0
+        sumhi=0
         for i in hi:
-            sum2= sum2 + float(i)
+            sumhi= sumhi + float(i)
 
 
 
@@ -97,7 +101,7 @@ class Table:
                (18, lista[17], fi[17], hi[17], Hi[17], 'Raj', 'Mumbai'),
                (19, lista[18], fi[18], hi[18], Hi[18], 'Raj', 'Mumbai'),
                (20, lista[19], fi[19], hi[19], Hi[19], 'Raj', 'Mumbai'),
-               ("TOTAL", sum, "", sum2, "nada", 'nada', 'nada')]
+               ("TOTAL", sumtotal, "", sumhi, "", 'Deberia dar 100 aqui', 'nada')]
 
         total_rows = len(lst)
         total_columns = len(lst[0])
