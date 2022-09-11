@@ -50,14 +50,19 @@ class Table:
 
         hi = []
         sum = 0
-        for i in lista:
-            sum = sum + int(i)
+        for i in fi:
+            sum = sum + float(i)
         print(sum)
 
         for i in range(20):
             hi.append(float(fi[i])/sum)
         print("hi de los datos:")
         print(hi)
+
+        sum2=0
+        for i in hi:
+            sum2= sum2 + float(i)
+
 
 
         #HI
@@ -91,7 +96,8 @@ class Table:
                (17, lista[16], fi[16], hi[16], Hi[16], 'Raj', 'Mumbai'),
                (18, lista[17], fi[17], hi[17], Hi[17], 'Raj', 'Mumbai'),
                (19, lista[18], fi[18], hi[18], Hi[18], 'Raj', 'Mumbai'),
-               (20, lista[19], fi[19], hi[19], Hi[19], 'Raj', 'Mumbai')]
+               (20, lista[19], fi[19], hi[19], Hi[19], 'Raj', 'Mumbai'),
+               ("TOTAL", sum, "", sum2, "nada", 'nada', 'nada')]
 
         total_rows = len(lst)
         total_columns = len(lst[0])
