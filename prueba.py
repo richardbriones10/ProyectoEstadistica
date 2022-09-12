@@ -1,57 +1,76 @@
 # Python program to create a table
 import tkinter
 from tkinter import *
+import tkinter as tk
 
-root = tkinter.Tk()
+import matplotlib
 
-canvas1 = tkinter.Canvas(root, width=400, height=300)
-canvas1.pack()
+matplotlib.use('TkAgg')
 
-entry1 = tkinter.Entry(root)
-canvas1.create_window(200, 140, window=entry1)
-
+# Variables
+sumtotal = 0
+sumhi = 0
+sumfi = 0
+sumaP = 0
+fi = []
+Hi = []
+hi = []
+porcentaje = []
+porcentajeA = []
 lista = []
 
+# CREA LA VENTANA DE ENTRADA DE DATOS
+root = tk.Tk()
 
-def TablaFrecuencia():
-    x1 = entry1.get()
+canvas1 = tk.Canvas(root, width=400, height=300)
+canvas1.pack()
 
-    for i in range(20):
-        lista.append(i)
-    # lista.append(x1)
+entry1 = tk.Entry(root)
+canvas1.create_window(200, 140, window=entry1)
 
-    label1 = tkinter.Label(root, text="Valor Agregado: "+x1)
+
+def getSquareRoot():
+    x1 = int(entry1.get())
+
+    lista.append(x1)
+
+    # for i in range(20):
+    #     lista.append(i)
+
+    label1 = tk.Label(root, text=x1)
     canvas1.create_window(200, 230, window=label1)
 
 
-button1 = tkinter.Button(text='Agregar', command=TablaFrecuencia())
+button1 = tk.Button(text='Agregar Frecuencia', command=getSquareRoot)
 canvas1.create_window(200, 180, window=button1)
 
-root.mainloop()
+root.mainloop()  # CIERRA LA VENTANA DE ENTRADA DE DATOS
 
 print("Frecuencia de los datos:")
 print(lista)
 
 
+# TABLA DE FRECUENCIA
 class Table:
 
     def __init__(self, root):
 
+        sumtotal = 0
+        sumhi = 0
+        sumfi = 0
+        sumaP = 0
 
-        sumtotal=0
         for i in lista:
-            sumtotal=sumtotal+i
+            sumtotal = sumtotal + int(i)
 
-
-        #FRECUENCIA ACUMULADA (Fi)
-        fi = []
+        # FRECUENCIA ACUMULADA (Fi)
         fi.append(lista[0])
         for i in range(19):
-            fi.append(int(fi[i])+int(lista[i+1]))
+            fi.append(int(fi[i]) + int(lista[i + 1]))
         print("Frecuencia Acumulada de los datos: ")
         print(fi)
 
-        #hi
+        # hi
 
         hi = []
         sumfi = 0
@@ -63,14 +82,10 @@ class Table:
         print("hi de los datos:")
         print(hi)
 
-        sumhi=0
         for i in hi:
-            sumhi= sumhi + float(i)
+            sumhi = sumhi + float(i)
 
-
-
-        #HI
-        Hi = []
+        # HI
         Hi.append(hi[0])
         for i in range(19):
             Hi.append(float(Hi[i]) + float(hi[i + 1]))
@@ -116,10 +131,47 @@ class Table:
                 self.e.insert(END, lst[i][j])
 
 
-# take the data
+class Graph:
+    sumtotal1 = 1
 
 
-# create root window
+# CREA LA VENTANA DE TABLA DE FRECUENCIAS
 root = Tk()
+root.title("TABLA DE FRECUENCIAS")
 t = Table(root)
+root.mainloop()  # CIERRA LA VENTANA DE TABLA DE FRECUENCIAS
+
+# ABRE LA VENTANA DE MEDIA,MEDIANA Y MODA
+root = tkinter.Tk()
+root.title("GRAFICAS")
+# g = Graph(root)
+
+c_width = 1080
+c_height = 720
+c = tkinter.Canvas(root, width=c_width, height=c_height, bg='white')
+c.pack()
+
+# the variables below size the bar graph
+# experiment with them to fit your needs
+# highest y = max_data_value * y_stretch
+y_stretch = 15
+# gap between lower canvas edge and x axis
+y_gap = 20
+# stretch enough to get all data items in
+x_stretch = 10
+x_width = 20
+# gap between left canvas edge and y axis
+x_gap = 20
+
+for x, y in enumerate(lista):
+    # calculate reactangle coordinates (integers) for each bar
+    x0 = x * x_stretch + x * x_width + x_gap
+    y0 = c_height - int(y * y_stretch + y_gap)
+    x1 = x * x_stretch + x * x_width + x_width + x_gap
+    y1 = c_height - y_gap
+    # draw the bar
+    c.create_rectangle(x0, y0, x1, y1, fill="red")
+    # put the y value above each bar
+    c.create_text(x0 + 2, y0, anchor=tkinter.SW, text=str(y))
+
 root.mainloop()
