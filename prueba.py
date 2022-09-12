@@ -13,7 +13,7 @@ canvas1.create_window(200, 140, window=entry1)
 lista = []
 
 
-def getSquareRoot():
+def TablaFrecuencia():
     x1 = entry1.get()
 
     for i in range(20):
@@ -24,7 +24,7 @@ def getSquareRoot():
     canvas1.create_window(200, 230, window=label1)
 
 
-button1 = tkinter.Button(text='Agregar', command=getSquareRoot)
+button1 = tkinter.Button(text='Agregar', command=TablaFrecuencia())
 canvas1.create_window(200, 180, window=button1)
 
 root.mainloop()
