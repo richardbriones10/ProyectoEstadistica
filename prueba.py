@@ -1,10 +1,11 @@
 # Python program to create a table
+import argparse
 import tkinter
 from tkinter import *
 import tkinter as tk
 import numpy as np
 import matplotlib.pyplot as plt
-
+import re
 import matplotlib
 
 matplotlib.use('TkAgg')
@@ -16,6 +17,8 @@ hi = []
 porcentaje = []
 porcentajeA = []
 lista = []
+global_contador = 0
+
 
 # CREA LA VENTANA DE ENTRADA DE DATOS
 root = tk.Tk()
@@ -30,11 +33,17 @@ canvas1.create_window(200, 140, window=entry1)
 def getSquareRoot():
     x1 = entry1.get()
 
-    # lista.append(x1)
-    for i in range(20):
-        lista.append(20-i)
+    global global_contador
+    global_contador+=1
 
-    label1 = tk.Label(root, text=x1)
+
+    lista.append(x1)
+
+
+    texto1= str(x1)
+    texto2 =str(global_contador)
+
+    label1 = tk.Label(root, text="Contador:"+texto2+" Valor Agregado:"+texto1)
     canvas1.create_window(200, 230, window=label1)
 
 
@@ -135,46 +144,6 @@ t = Table(root)
 root.mainloop()  # CIERRA LA VENTANA DE TABLA DE FRECUENCIAS
 
 # ABRE LA VENTANA DE MEDIA,MEDIANA Y MODA
-# root = tkinter.Tk()
-# root.title("GRAFICAS")
-
-# c_width = 720
-# c_height = 480
-# c = tkinter.Canvas(root, width=c_width, height=c_height, bg='white')
-# c.pack()
-#
-# # the variables below size the bar graph
-# # experiment with them to fit your needs
-# # highest y = max_data_value * y_stretch
-# y_stretch = 15
-# # gap between lower canvas edge and x axis
-# y_gap = 20
-# # stretch enough to get all data items in
-# x_stretch = 10
-# x_width = 20
-# # gap between left canvas edge and y axis
-# x_gap = 20
-#
-# for x, y in enumerate(lista):
-#     # calculate reactangle coordinates (integers) for each bar
-#     x0 = x * x_stretch + x * x_width + x_gap
-#     y0 = c_height - int(y * y_stretch + y_gap)
-#     x1 = x * x_stretch + x * x_width + x_width + x_gap
-#     y1 = c_height - y_gap
-#     # draw the bar
-#     c.create_rectangle(x0, y0, x1, y1, fill="red")
-#     # put the y value above each bar
-#     c.create_text(x0 + 2, y0, anchor=tkinter.SW, text=str(y))
-
-data = lista
-newdata = np.squeeze(data)  # Shape is now: (10, 80)
-plt.bar(newdata,newdata)  # plotting by columns
-plt.bar(newdata,newdata)  # plotting by columns
-plt.xlabel("Indices")
-plt.ylabel("Frecuencias")
-plt.show()
-
-# root.mainloop() #CIERRE DE LAS GRAFICAS
 
 # MEDIA ARITMETICA
 suma_total_frecuencia = 0
@@ -182,3 +151,53 @@ for i in lista:
     suma_total_frecuencia = suma_total_frecuencia + int(i)
 media = suma_total_frecuencia / len(lista)
 print(f"Media:{media}")
+
+#MEDIANA
+m = int(len(lista)/2)
+n = int(len(lista)/2)+1
+mn = int(int(m+n)/2)
+mediana = int(lista[mn])
+print(f"Mediana:{mediana}")
+
+
+
+#MODA
+from statistics import mode
+moda = mode(lista)
+print(f"Moda:{moda}")
+
+
+
+x = [0,5,10,15,20]
+media_graph = [media]*20
+print(media_graph)
+mediana_graph = [mediana]*20
+moda_graph = [moda]*20
+
+data = lista
+newdata = np.squeeze(data)  # Shape is now: (10, 80)
+
+lista1 = lista
+print(dict(zip(lista1,map(lambda x: lista.count(x),lista))))
+axe_x=list(dict(zip(lista1,map(lambda x: lista.count(x),lista))).keys())
+axe_y=list(dict(zip(lista1,map(lambda x: lista.count(x),lista))).values())
+axe_x.sort()
+print(axe_x)
+print(axe_y)
+
+
+# Two plots - "Two plots vertical, one horizonal, first plot"
+y=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+plt.bar(axe_x,axe_y)  # plotting by columns
+plt.bar(axe_x,axe_y)  # plotting by columns
+# plt.plot( media_graph,y, label = "Media")
+# plt.plot(y, mediana_graph, label = "Mediana")
+# plt.plot(y, moda_graph, label = "Moda")
+
+
+
+plt.legend()
+plt.show()
+
+
+
