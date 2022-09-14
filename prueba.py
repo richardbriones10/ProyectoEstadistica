@@ -38,10 +38,8 @@ def getSquareRoot():
 
 
     lista.append(x1)
-
     # for i in range(20):
     #     lista.append(i)
-
 
     texto1= str(x1)
     texto2 =str(global_contador)
@@ -157,6 +155,7 @@ print(f"Media:{media}")
 
 #MEDIANA
 from statistics import median
+nuevalista.sort()
 mediana = median(nuevalista)
 print(f"Mediana:{mediana}")
 
