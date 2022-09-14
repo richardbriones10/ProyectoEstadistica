@@ -39,6 +39,9 @@ def getSquareRoot():
 
     lista.append(x1)
 
+    # for i in range(20):
+    #     lista.append(i)
+
 
     texto1= str(x1)
     texto2 =str(global_contador)
@@ -146,53 +149,51 @@ root.mainloop()  # CIERRA LA VENTANA DE TABLA DE FRECUENCIAS
 # ABRE LA VENTANA DE MEDIA,MEDIANA Y MODA
 
 # MEDIA ARITMETICA
-suma_total_frecuencia = 0
-for i in lista:
-    suma_total_frecuencia = suma_total_frecuencia + int(i)
-media = suma_total_frecuencia / len(lista)
+from statistics import mean
+
+nuevalista = [int(item) for item in lista]
+media= mean(nuevalista)
 print(f"Media:{media}")
 
 #MEDIANA
-m = int(len(lista)/2)
-n = int(len(lista)/2)+1
-mn = int(int(m+n)/2)
-mediana = int(lista[mn])
+from statistics import median
+mediana = median(nuevalista)
 print(f"Mediana:{mediana}")
 
 
 
 #MODA
 from statistics import mode
-moda = mode(lista)
+moda = (mode(lista))
 print(f"Moda:{moda}")
 
 
-
-x = [0,5,10,15,20]
-media_graph = [media]*20
-print(media_graph)
-mediana_graph = [mediana]*20
-moda_graph = [moda]*20
 
 data = lista
 newdata = np.squeeze(data)  # Shape is now: (10, 80)
 
 lista1 = lista
-print(dict(zip(lista1,map(lambda x: lista.count(x),lista))))
 axe_x=list(dict(zip(lista1,map(lambda x: lista.count(x),lista))).keys())
 axe_y=list(dict(zip(lista1,map(lambda x: lista.count(x),lista))).values())
-axe_x.sort()
 print(axe_x)
 print(axe_y)
 
 
+media_graph = [media]*len(axe_x)
+mediana_graph = [mediana]*len(axe_x)
+moda_graph = [moda]*len(axe_x)
+
+print(media_graph)
+
+
 # Two plots - "Two plots vertical, one horizonal, first plot"
-y=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+# plt.bar(axe_x,axe_y)  # plotting by columns
+plt.plot(axe_x,media_graph, label = "Media",color="red")
+plt.plot(axe_x, mediana_graph, label = "Mediana", color="yellow")
+
+
 plt.bar(axe_x,axe_y)  # plotting by columns
-plt.bar(axe_x,axe_y)  # plotting by columns
-# plt.plot( media_graph,y, label = "Media")
-# plt.plot(y, mediana_graph, label = "Mediana")
-# plt.plot(y, moda_graph, label = "Moda")
+
 
 
 
