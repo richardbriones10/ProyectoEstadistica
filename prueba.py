@@ -156,6 +156,9 @@ t = Table(root)
 root.mainloop()  # CIERRA LA VENTANA DE TABLA DE FRECUENCIAS
 
 
+#DECIL, CUARTIL, PERCENTIL
+
+
 # ABRE LA VENTANA DE MEDIA,MEDIANA Y MODA
 
 def mean_calc(data_set):
@@ -199,7 +202,6 @@ def sample_var_calc(data_set):
     mean = mean_calc(data_set)
     variance = sum([(y-mean)**2 for y in data_set])/(data_set_length-1)
     return variance
-# varianza = sample_var_calc(lista)
 varianza=statistics.variance(lista)
 
 
@@ -222,11 +224,11 @@ plt.hist(lista, edgecolor='black', color='purple')
 plt.axvline(media, color='red', lw=3, label=f"Media:{media}")
 plt.axvline(mediana, color='yellow', lw=3, label=f"Mediana:{mediana}")
 plt.axvline(moda, color='green', lw=3, label=f"Moda:{moda}")
-plt.axvline(varianza, color='black', lw=3, label=f"Varianza:{varianza}")
+plt.axvline(varianza, color='black', lw=3, label=f"Varianza:{varianza:.2f}")
 
 
 plt.axvspan(stdev_range[0],stdev_range[1], alpha=.2, color='red',
-         label=f"Desviacion Estandar:{desviacion}")
+         label=f"Desviacion Estandar:{desviacion:.2f}")
 
 plt.axvspan(three_stdev_range[0],three_stdev_range[1], alpha=.2, color='green',
          label='Desviacion de los datos')
