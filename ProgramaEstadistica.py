@@ -59,6 +59,11 @@ lista = list(map(int, lista_Str))
 print("Frecuencia de los datos:")
 print(lista)
 
+#Varianza
+listacopia = [list(map(int, lista))]
+from numpy import var
+varianzas = (var(listacopia))
+print(f"Varianza:{varianzas}")
 
 # TABLA DE FRECUENCIA
 class Table:
@@ -147,6 +152,101 @@ class Table:
 
                 self.e.grid(row=i, column=j)
                 self.e.insert(END, lst[i][j])
+class Table2:
+
+    def __init__(self, root):
+
+        lst = [("Datos", "Valor"),
+               ("N", 20),
+               ("Promedio", media),
+               ("Varianza", varianzas)]
+
+        total_rows = len(lst)
+        total_columns = len(lst[0])
+
+        # code for creating table
+        for i in range(total_rows):
+            for j in range(total_columns):
+                self.e = Entry(root, width=20, fg='blue',
+                               font=('Arial', 11, 'bold'))
+
+                self.e.grid(row=i, column=j)
+                self.e.insert(END, lst[i][j])
+class Table3:
+
+    def __init__(self, root):
+
+        lst = [("Cuartil", "Valor"),
+               ("Cuartil 1", cuartil[0]),
+               ("Cuartil 2", cuartil[1]),
+               ("Cuartil 3", cuartil[2])]
+
+        total_rows = len(lst)
+        total_columns = len(lst[0])
+
+        # code for creating table
+        for i in range(total_rows):
+            for j in range(total_columns):
+                self.e = Entry(root, width=20, fg='blue',
+                               font=('Arial', 11, 'bold'))
+
+                self.e.grid(row=i, column=j)
+                self.e.insert(END, lst[i][j])
+class Table4:
+
+    def __init__(self, root):
+
+        lst = [("Deciles", "Valor"),
+               ("Decil 1", decil[0]),
+               ("Decil 2", decil[1]),
+               ("Decil 3", decil[2]),
+               ("Decil 4", decil[3]),
+               ("Decil 5", decil[4]),
+               ("Decil 6", decil[5]),
+               ("Decil 7", decil[6]),
+               ("Decil 8", decil[7]),
+               ("Decil 9", decil[8])]
+
+        total_rows = len(lst)
+        total_columns = len(lst[0])
+
+        # code for creating table
+        for i in range(total_rows):
+            for j in range(total_columns):
+                self.e = Entry(root, width=20, fg='blue',
+                               font=('Arial', 11, 'bold'))
+
+                self.e.grid(row=i, column=j)
+                self.e.insert(END, lst[i][j])
+class Table5:
+
+    def __init__(self, root):
+
+        lst = [("Percentiles", "Valor"),
+               ("Percenti 1", percentiles[0]),
+               ("Percenti 2", percentiles[1]),
+               ("Percenti 3", percentiles[2]),
+               ("Percenti 4", percentiles[3]),
+               ("Percenti 5", percentiles[4]),
+               ("Percenti 6", percentiles[5]),
+               ("Percenti 7", percentiles[6]),
+               ("Percenti 8", percentiles[7]),
+               ("Percenti 9", percentiles[8]),
+               ("Percenti 10", percentiles[9])]
+
+        total_rows = len(lst)
+        total_columns = len(lst[0])
+
+        # code for creating table
+        for i in range(total_rows):
+            for j in range(total_columns):
+                self.e = Entry(root, width=20, fg='blue',
+                               font=('Arial', 11, 'bold'))
+
+                self.e.grid(row=i, column=j)
+                self.e.insert(END, lst[i][j])
+
+
 
 
 # CREA LA VENTANA DE TABLA DE FRECUENCIAS
@@ -155,8 +255,13 @@ root.title("TABLA DE FRECUENCIAS")
 t = Table(root)
 root.mainloop()  # CIERRA LA VENTANA DE TABLA DE FRECUENCIAS
 
-
 #DECIL, CUARTIL, PERCENTIL
+#cuartile
+cuartil = np.percentile(listacopia, np.arange(25, 100, 25))
+#deciles
+decil = np.percentile(listacopia, np.arange(10, 100, 10))
+#percentiles
+percentiles = np.percentile(listacopia, np.arange(0, 100, 1))
 
 
 # ABRE LA VENTANA DE MEDIA,MEDIANA Y MODA
@@ -218,6 +323,27 @@ stdev_range = [media-desviacion,media+desviacion]
 three_stdev_range = [media-desviacion*3,media+desviacion*3]
 
 
+root = Tk()
+root.title("")
+t = Table2(root)
+root.mainloop()  # CIERRA LA VENTANA
+
+root = Tk()
+root.title("")
+t = Table3(root)
+root.mainloop()  # CIERRA LA VENTANA DE TABLA DE FRECUENCIAS
+
+# CREA LA VENTANA DE LA VARIANZA
+roote = Tk()
+roote.title("TABLA DE DECILES")
+t = Table4(roote)
+roote.mainloop()  # CIERRA LA VENTANA DE TABLA DE INFO
+
+# CREA LA VENTANA DE LA VARIANZA
+roote = Tk()
+roote.title("TABLA DE PERCENTILES")
+t = Table5(roote)
+roote.mainloop()  # CIERRA LA VENTANA DE TABLA DE INFO
 
 
 plt.hist(lista, edgecolor='black', color='purple')
@@ -238,3 +364,15 @@ plt.ylabel('Frecuencias')
 plt.title('Graficas')
 plt.legend()
 plt.show()
+
+plt.hist(cuartil, edgecolor='black', color='purple')
+plt.title('Cuartiles')
+plt.show()
+plt.hist(decil, edgecolor='black', color='purple')
+plt.title('Deciles')
+plt.show()
+plt.hist(percentiles, edgecolor='black', color='purple')
+plt.title('Percentiles')
+plt.show()
+
+
